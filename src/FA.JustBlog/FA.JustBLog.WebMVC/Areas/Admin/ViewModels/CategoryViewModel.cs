@@ -2,7 +2,7 @@
 using System.Xml.Linq;
 using System;
 
-namespace FA.JustBlog.WebMVC2.Areas.Admin.ViewModels
+namespace FA.JustBlog.WebMVC.Areas.Admin.ViewModels
 {
     public class CategoryViewModel: BaseViewModel
     {

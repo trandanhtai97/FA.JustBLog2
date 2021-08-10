@@ -42,10 +42,10 @@
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -64,25 +64,9 @@
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="JustBlogDbContext.cs" />
     <Compile Include="DbInitializer.cs" />
-    <Compile Include="Migrations\202107271005131_InitialCreate.cs" />
-    <Compile Include="Migrations\202107271005131_InitialCreate.designer.cs">
-      <DependentUpon>202107271005131_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107271008219_ChangeSchemaPostTag.cs" />
-    <Compile Include="Migrations\202107271008219_ChangeSchemaPostTag.designer.cs">
-      <DependentUpon>202107271008219_ChangeSchemaPostTag.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107280418557_AddImageUrlForPostAndChangePostedOnToPublishedDate.cs" />
-    <Compile Include="Migrations\202107280418557_AddImageUrlForPostAndChangePostedOnToPublishedDate.designer.cs">
-      <DependentUpon>202107280418557_AddImageUrlForPostAndChangePostedOnToPublishedDate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202108041030082_AddCommentAndModifiedPost.cs" />
-    <Compile Include="Migrations\202108041030082_AddCommentAndModifiedPost.designer.cs">
-      <DependentUpon>202108041030082_AddCommentAndModifiedPost.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202108090847439_IntegrateIdentity.cs" />
-    <Compile Include="Migrations\202108090847439_IntegrateIdentity.designer.cs">
-      <DependentUpon>202108090847439_IntegrateIdentity.cs</DependentUpon>
+    <Compile Include="Migrations\202108100843385_ver1.cs" />
+    <Compile Include="Migrations\202108100843385_ver1.designer.cs">
+      <DependentUpon>202108100843385_ver1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,20 +82,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202107271005131_InitialCreate.resx">
-      <DependentUpon>202107271005131_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107271008219_ChangeSchemaPostTag.resx">
-      <DependentUpon>202107271008219_ChangeSchemaPostTag.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107280418557_AddImageUrlForPostAndChangePostedOnToPublishedDate.resx">
-      <DependentUpon>202107280418557_AddImageUrlForPostAndChangePostedOnToPublishedDate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202108041030082_AddCommentAndModifiedPost.resx">
-      <DependentUpon>202108041030082_AddCommentAndModifiedPost.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202108090847439_IntegrateIdentity.resx">
-      <DependentUpon>202108090847439_IntegrateIdentity.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202108100843385_ver1.resx">
+      <DependentUpon>202108100843385_ver1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

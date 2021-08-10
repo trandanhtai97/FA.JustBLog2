@@ -1,7 +1,8 @@
 using FA.JustBlog.Models.Security;
-using FA.JustBlog.WebMVC2.ViewModels;
+using FA.JustBlog.WebMVC.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Owin.Security;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ using System.Web.Mvc;
 
 namespace FA.JustBlog.WebMVC.Controllers
 {
-    [Authorize]
+    [System.Web.Mvc.Authorize]
     public class ManageController : Controller
     {
         public ManageController()
@@ -325,7 +326,7 @@ namespace FA.JustBlog.WebMVC.Controllers
             return View(new ManageLoginsViewModel
             {
                 CurrentLogins = userLogins,
-                OtherLogins = otherLogins
+                OtherLogins = (System.Collections.Generic.IList<Microsoft.AspNetCore.Http.Authentication.AuthenticationDescription>)otherLogins
             });
         }
 

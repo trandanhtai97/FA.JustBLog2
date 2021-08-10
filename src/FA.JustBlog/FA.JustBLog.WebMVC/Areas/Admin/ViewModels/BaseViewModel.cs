@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FA.JustBlog.WebMVC2.Areas.Admin.ViewModels
+namespace FA.JustBlog.WebMVC.Areas.Admin.ViewModels
 {
     public class BaseViewModel
     {

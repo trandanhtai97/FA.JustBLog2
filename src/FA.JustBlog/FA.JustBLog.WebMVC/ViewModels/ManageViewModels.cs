@@ -18,7 +18,7 @@ namespace FA.JustBlog.WebMVC.ViewModels
     public class ManageLoginsViewModel
     {
         public IList<UserLoginInfo> CurrentLogins { get; set; }
-        public IList<AuthenticationDescription> OtherLogins { get; set; }
+        public IList<Microsoft.AspNetCore.Http.Authentication.AuthenticationDescription> OtherLogins { get; set; }
     }
 
     public class FactorViewModel

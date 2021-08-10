@@ -1,6 +1,6 @@
 ﻿using FA.JustBlog.Models.Common;
 using FA.JustBlog.Services;
-using FA.JustBlog.WebMVC2.Areas.Admin.ViewModels;
+using FA.JustBlog.WebMVC.Areas.Admin.ViewModels;
 using System;
 using System.Data;
 using System.Linq;

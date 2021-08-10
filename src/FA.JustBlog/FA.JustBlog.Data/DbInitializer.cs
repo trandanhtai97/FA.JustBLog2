@@ -9,7 +9,7 @@ using FA.JustBlog.Models.Security;
 
 namespace FA.JustBlog.Data
 {
-    public class DbInitializer : DropCreateDatabaseIfModelChanges<JustBlogDbContext>
+    public class DbInitializer : DropCreateDatabaseAlways<JustBlogDbContext>
     {
         protected override void Seed(JustBlogDbContext context)
         {

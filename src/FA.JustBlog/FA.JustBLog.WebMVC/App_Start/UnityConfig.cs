@@ -1,4 +1,5 @@
 using FA.JustBlog.Data.Infrastructure;
+using FA.JustBlog.Data.Infrastructure.BaseRepositories;
 using FA.JustBlog.Services;
 using FA.JustBlog.WebMVC.Controllers;
 using System;
@@ -48,6 +49,9 @@ namespace FA.JustBlog.WebMVC
             container.RegisterType<IUnitOfWork, UnitOfWork>();
             container.RegisterType<AccountController>( new InjectionConstructor());
             container.RegisterType<ManageController>( new InjectionConstructor());
+            container.RegisterType<IGenericRepository<Category>, GenericRepository<Category>>();
+            container.RegisterType<IGenericRepository<Tag>, GenericRepository<Tag>>();
+            container.RegisterType<IGenericRepository<Category>, GenericRepository<Category>>();
             container.RegisterType<ICategoryServices, CategoryServices>();
             container.RegisterType<ITagServices, TagServices>();
             container.RegisterType<IPostServices, PostServices>();

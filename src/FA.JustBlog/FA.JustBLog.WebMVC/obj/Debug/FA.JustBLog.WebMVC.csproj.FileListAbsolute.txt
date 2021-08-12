@@ -1,2 +1,0 @@
-C:\Users\nguyen tien dat\Documents\abc\FA.JustBLog2\src\FA.JustBlog\FA.JustBLog.WebMVC\obj\Debug\FA.JustBLog.WebMVC.csprojAssemblyReference.cache
-C:\Users\nguyen tien dat\Documents\abc\FA.JustBLog2\src\FA.JustBlog\FA.JustBLog.WebMVC\obj\Debug\FA.JustBLog.WebMVC.csproj.CoreCompileInputs.cache

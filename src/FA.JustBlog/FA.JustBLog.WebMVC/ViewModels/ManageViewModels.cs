@@ -1,5 +1,4 @@
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.Owin.Security;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,7 +17,7 @@ namespace FA.JustBlog.WebMVC.ViewModels
     public class ManageLoginsViewModel
     {
         public IList<UserLoginInfo> CurrentLogins { get; set; }
-        public IList<Microsoft.AspNetCore.Http.Authentication.AuthenticationDescription> OtherLogins { get; set; }
+        public IList<AuthenticationDescription> OtherLogins { get; set; }
     }
 
     public class FactorViewModel

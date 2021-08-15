@@ -3,101 +3,93 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    @Styles.Render("~/Content/css")
+    <title>@ViewBag.Title - Just Blog</title>
+    <link rel="icon" href="~/Assets/images/bootstrap-solid.svg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    @Styles.Render("~/Assets/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <link href="~/Assets/css/global.css" rel="stylesheet" />
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="@Url.Action("Index", "Home", new { area = "" })">
-            <img src="~/Assets/images/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-            Bootstrap
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <a class="navbar-brand" href="~/">
+            <img src="~/assets/images/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+            Just Blog
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="@Url.Action("Index", "Home", new { area = "" })">Home <span class="sr-only">(current)</span></a>
+                    @Html.ActionLink("Home", "Index", "Post", null, new { @class = "nav-link" })
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("About", "Home", new { area = "" })">About</a>
+                @{ Html.RenderAction("Index", "Category");}
+                <li class="nav-item active">
+                    @Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Contact", "Home", new { area = "" })">Contact</a>
+                <li class="nav-item active">
+                    @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })
                 </li>
                 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                 {
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Admin Dashboard
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="@Url.Action("Index", "UsersAdmin", new { area = "Identity" })">Users Admin</a>
-            <a class="dropdown-item" href="@Url.Action("Index", "RolesAdmin", new { area = "Identity" })">Roles Admin</a>
-        </div>
-    </li>}
-
-                @if (Request.IsAuthenticated && (User.IsInRole("Contributor") || User.IsInRole("Admin")))
-                {
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Contributor Dashboard
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="@Url.Action("Index", "CategoryManagement", new { area = "Admin" })">Category Management</a>
-            <a class="dropdown-item" href="@Url.Action("Index", "PostManagement", new { area = "Admin" })">Post Management</a>
-            <a class="dropdown-item" href="@Url.Action("Index", "TagManagement", new { area = "Admin" })">Tag Management</a>
-        </div>
-    </li>}
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Admin Dashboard
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="@Url.Action("Index", "UsersAdmin", new { area = "Identity" })">Users Admin</a>
+                            <a class="dropdown-item" href="@Url.Action("Index", "RolesAdmin", new { area = "Identity" })">Roles Admin</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="@Url.Action("Index", "PostsManagement", new { area = "Admin"})">Post Management</a>
+                            <a class="dropdown-item" href="@Url.Action("Index", "CategoriesManagement", new { area = "Admin"})">Category Management</a>
+                            <a class="dropdown-item" href="@Url.Action("Index", "TagsManagement", new { area = "Admin"})">Tag Management</a>
+                            <a class="dropdown-item" href="@Url.Action("Index", "CommentsManagement", new { area = "Admin"})">Comment Management</a>
+                        </div>
+                    </li>
+                }
             </ul>
             @Html.Partial("_LoginPartial")
         </div>
     </nav>
 
+    <!-- Content -->
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
+            <!-- Left Content -->
+            <div class="col-lg-8">
                 @RenderBody()
             </div>
-            <div class="col-md-3">
-                <form action="@Url.Action("Index", "Home")" method="get" class="form-inline float-right">
-                    <div class="form-group mx-sm-3 mb-2">
-                        <input type="text" class="form-control mr-3" id="inputSearch" name="SearchString" value="@ViewData["currentFilter"]" placeholder="Input....">
-                        <button type="submit" class="form-control btn btn-primary">
+            <!-- Right Menu -->
+            <div class="col-lg-4 pl-5 bg-custom">
+                <form action="@Url.Action("Index", "Post")" method="get" class="form-inline float-right mb-3">
+                    <div class="form-group mx-md-3 mb-2">
+                        <input type="text" class="form-control mr-3" id="inputSearch" name="SearchString" value="@ViewData["currentFilter"]" placeholder="Search">
+                        <button type="submit" class=" form-control btn btn-primary">
+                            Search
                         </button>
                     </div>
                 </form>
-                @Html.Partial("_AboutMe")
+                @{ Html.RenderAction("LastestPost", "Post");}
+                <hr />
+                @Html.Partial("_AboutPartial")
+                <hr />
+                @{ Html.RenderAction("MostViewedPost", "Post");}
+                <hr />
+                @{ Html.RenderAction("PopularTags", "Tag");}
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                @RenderBody()
-            </div>
-            <div class="col-md-4 pl-5 bg-custom">
-                @Html.Action("LastestPosts", "Posts")
-                <hr />
-                @Html.Action("HighesPosts", "Posts")
-                <hr />
-                @Html.Action("MostViewPosts", "Posts")
-                <hr />
-                @Html.Action("PopularTags", "Tags")
-            </div>
-        </div>
-        @Html.Partial("_Footer")
-    </div>
-    
 
+    <!-- Footer -->
+    <footer>
+        @Html.Partial("_FooterPartial")
+    </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/fontawesome.min.js" integrity="sha512-KCwrxBJebca0PPOaHELfqGtqkUlFUCuqCnmtydvBSTnJrBirJ55hRG5xcP4R9Rdx9Fz9IF3Yw6Rx40uhuAHR8Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @RenderSection("scripts", required: false)
+    <script src="~/Assets/js/timeago.js"></script>
+    <script src="~/Assets/js/global.js"></script>
 </body>
 </html>

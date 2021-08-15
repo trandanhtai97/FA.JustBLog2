@@ -53,33 +53,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseServices\BaseServices.cs" />
+    <Compile Include="BaseServices\IBaseServices.cs" />
+    <Compile Include="CategoryServices.cs" />
+    <Compile Include="CommentServices.cs" />
     <Compile Include="ICategoryServices.cs" />
     <Compile Include="ICommentServices.cs" />
+    <Compile Include="IPostServices.cs" />
     <Compile Include="ITagServices.cs" />
     <Compile Include="PostServices.cs" />
-    <Compile Include="CategoryServices.cs" />
-    <Compile Include="BaseServices\IBaseService.cs" />
-    <Compile Include="IPostServices.cs" />
-    <Compile Include="TagServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TagServices.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FA.JustBlog.Common\FA.JustBlog.Common.csproj">
+      <Project>{4fbaea1e-7b56-4d3f-995f-92a141724377}</Project>
+      <Name>FA.JustBlog.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FA.JustBlog.Data\FA.JustBlog.Data.csproj">
+      <Project>{ed855ca0-3a02-44f6-b8b1-068a8f7618e2}</Project>
+      <Name>FA.JustBlog.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FA.JustBlog.Models\FA.JustBlog.Models.csproj">
+      <Project>{35d610cd-16cd-4523-8c04-0207ef341dc2}</Project>
+      <Name>FA.JustBlog.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FA.JustBlog.Common\FA.JustBlog.Common.csproj">
-      <Project>{3B6300C4-C8F9-41B6-A2C8-CBE93901D78D}</Project>
-      <Name>FA.JustBlog.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FA.JustBlog.Data\FA.JustBlog.Data.csproj">
-      <Project>{896B2C8C-7688-4F64-A2AE-1D61610E7575}</Project>
-      <Name>FA.JustBlog.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FA.JustBlog.Models\FA.JustBlog.Models.csproj">
-      <Project>{44AB3327-D7F5-4F93-B32D-CFA2AA0BCFE1}</Project>
-      <Name>FA.JustBlog.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

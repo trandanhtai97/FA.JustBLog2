@@ -17,86 +17,85 @@ namespace FA.JustBlog.Services
 
         public override int Add(Post entity)
         {
-            if (entity.Published)
-            {
-                entity.PublishedDate = DateTime.Now;
-            }
             return base.Add(entity);
         }
 
         public override Task<int> AddAsync(Post entity)
         {
-            if (entity.Published)
-            {
-                entity.PublishedDate = DateTime.Now;
-            }
             return base.AddAsync(entity);
         }
 
         public async Task<int> CountPostsForCategoryAsync(string category)
         {
-            return await _unitOfWork.PostRepository.GetQuery().CountAsync(p => p.Category.Name == category);
+            return await _unitOfWork.PostRepository.GetQuery().CountAsync(x => x.Category.Name.Equals(category));
         }
 
         public async Task<int> CountPostsForTagAsync(string tag)
         {
-            return await _unitOfWork.PostRepository.GetQuery().CountAsync(p => p.Tags.Any(t => t.Name == tag));
+            return await _unitOfWork.PostRepository.GetQuery().CountAsync(x => x.Tags.Any(t => t.Name.Equals(tag)));
         }
 
-        public async Task<IEnumerable<Post>> GetHighestPostsAsync(int size)
+        public async Task<IEnumerable<Post>> GetHighestPosts(int size)
         {
-            return await _unitOfWork.PostRepository.GetQuery().OrderByDescending(p => p.Rate).Take(size).ToListAsync();
+            return await _unitOfWork.PostRepository.GetQuery().OrderByDescending(x => x.Rate).Take(size).ToListAsync();
         }
 
-        public async Task<IEnumerable<Post>> GetLatestPostAsync(int size)
+        public async Task<IEnumerable<Post>> GetLatestPostAsync(int size, bool published = true)
         {
-            return await _unitOfWork.PostRepository.GetQuery().OrderByDescending(p => p.PublishedDate).Take(size).ToListAsync();
+            return await _unitOfWork.PostRepository.GetQuery().Where(x => x.IsDeleted == false)
+                .OrderByDescending(x => x.PostedOn).Take(size).ToListAsync();
         }
 
-        public async Task<IEnumerable<Post>> GetMostViewPostsAsync(int size)
+        public IEnumerable<Post> GetLatestPost(int size, bool published = true)
         {
-            return await _unitOfWork.PostRepository.GetQuery().OrderByDescending(p => p.ViewCount).Take(size).ToListAsync();
+            return _unitOfWork.PostRepository.GetQuery().Where(x => x.IsDeleted == false)
+                .OrderByDescending(x => x.PostedOn).Take(size).ToList();
+        }
+
+        public async Task<IEnumerable<Post>> GetMostViewedPostAsync(int size)
+        {
+            return await _unitOfWork.PostRepository.GetQuery().OrderByDescending(x => x.ViewCount).Take(size).ToListAsync();
         }
 
         public async Task<IEnumerable<Post>> GetPostsByCategoryAsync(string category)
         {
-            return await _unitOfWork.PostRepository.GetQuery().Where(p => p.Category.Name == category).ToListAsync();
+            return await _unitOfWork.PostRepository.GetQuery().Where(x => x.Category.Name.Equals(category)).ToListAsync();
         }
 
         public async Task<IEnumerable<Post>> GetPostsByCategoryAsync(Guid categoryId)
         {
-            return await _unitOfWork.PostRepository.GetQuery().Where(p => p.CategoryId == categoryId).ToListAsync();
-        }
-
-        public async Task<Post> GetPostsByDateAndUrlSlugAsync(int year, int month, string urlSlug)
-        {
-            return await _unitOfWork.PostRepository.GetQuery()
-                .FirstOrDefaultAsync(x => x.PublishedDate.Year == year &&
-                                    x.PublishedDate.Month == month && x.UrlSlug == urlSlug);
+            return await _unitOfWork.PostRepository.GetQuery().Where(x => x.CategoryId == categoryId).ToListAsync();
         }
 
         public async Task<IEnumerable<Post>> GetPostsByMonthAsync(DateTime monthYear)
         {
-            return await _unitOfWork.PostRepository.GetQuery()
-                .Where(p => p.PublishedDate.Year == monthYear.Year && p.PublishedDate.Month == monthYear.Month)
-                .ToListAsync();
+            return await _unitOfWork.PostRepository.GetQuery().Where(x => x.PostedOn.Month == monthYear.Month
+                                                                    && x.PostedOn.Year == monthYear.Year).ToListAsync();
         }
 
         public async Task<IEnumerable<Post>> GetPostsByTagAsync(string tag)
         {
-            return await _unitOfWork.PostRepository.GetQuery().Where(p => p.Tags.Any(t => t.Name == tag)).ToListAsync();
-            //return _unitOfWork.TagRepository.GetQuery().FirstOrDefaultAsync(t => t.Name == tag).Result.Posts;
+            return await _unitOfWork.PostRepository.GetQuery().Where(x => x.Tags.Any(t => t.Name.Equals(tag))).ToListAsync();
         }
 
         public async Task<IEnumerable<Post>> GetPostsByTagAsync(Guid tagId)
         {
-            return await _unitOfWork.PostRepository.GetQuery().Where(p => p.Tags.Any(t => t.Id == tagId)).ToListAsync();
+            return await _unitOfWork.PostRepository.GetQuery().Where(x => x.Tags.Any(t => t.Id == tagId)).ToListAsync();
         }
 
         public async Task<IEnumerable<Post>> GetPublisedPostsAsync(bool published = true)
         {
-            return await _unitOfWork.PostRepository.GetQuery().Where(p => p.Published == published).ToListAsync();
+            return await _unitOfWork.PostRepository.GetQuery().Where(x => x.Published == published).ToListAsync();
+        }
+
+        public async Task<Post> FindPostAsync(int year, int month, string urlSlug)
+        {
+            return await _unitOfWork.PostRepository.GetQuery().Where(x => x.PostedOn.Year == year && x.PostedOn.Month == month && x.UrlSlug.Equals(urlSlug)).FirstOrDefaultAsync();
+        }
+
+        public IEnumerable<Post> GetMostViewedPost(int size)
+        {
+            return _unitOfWork.PostRepository.GetQuery().OrderByDescending(x => x.ViewCount).Take(size).ToList();
         }
     }
 }
-

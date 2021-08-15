@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FA.JustBLog.WebMVC")]
+[assembly: AssemblyTitle("FA.JustBlog.WebMVC")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("FA.JustBLog.WebMVC")]
+[assembly: AssemblyProduct("FA.JustBlog.WebMVC")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("8454d31a-5aab-4bab-8b6c-fba42ebefd61")]
+[assembly: Guid("56f9a7c3-357f-4698-87a7-85f3e13bff52")]
 
 // Version information for an assembly consists of the following four values:
 //

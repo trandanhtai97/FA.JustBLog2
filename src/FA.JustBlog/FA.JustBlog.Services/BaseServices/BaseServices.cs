@@ -90,12 +90,12 @@ namespace FA.JustBlog.Services.BaseServices
 
         public IEnumerable<TEntity> GetAll()
         {
-            return _unitOfWork.GenericRepository<TEntity>().GetQuery().ToList();
+            return _unitOfWork.GenericRepository<TEntity>().GetQuery().Where(x => x.IsDeleted == false).ToList();
         }
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await _unitOfWork.GenericRepository<TEntity>().GetQuery().ToListAsync();
+            return await _unitOfWork.GenericRepository<TEntity>().GetQuery().Where(x => x.IsDeleted == false).ToListAsync();
         }
 
         public virtual async Task<Paginated<TEntity>> GetAsync(Expression<Func<TEntity, bool>> filter = null,
@@ -144,4 +144,3 @@ namespace FA.JustBlog.Services.BaseServices
         }
     }
 }
-

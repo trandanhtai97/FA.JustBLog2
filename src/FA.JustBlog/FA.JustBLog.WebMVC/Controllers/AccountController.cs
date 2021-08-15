@@ -393,7 +393,7 @@ namespace FA.JustBlog.WebMVC.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Post");
         }
 
         //
@@ -431,7 +431,7 @@ namespace FA.JustBlog.WebMVC.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Post");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

@@ -1,8 +1,4 @@
-﻿using FA.JustBlog.Models.Common;
-using FA.JustBlog.Services;
-using System;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using FA.JustBlog.Services;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -18,39 +14,15 @@ namespace FA.JustBlog.WebMVC.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Index(string searchString, string currentFilter, int? pageIndex = 1, int? pageSize = 3)
+        public async Task<ActionResult> Index()
         {
-            ViewData["CurrentPageSize"] = pageSize;
-
-            if (searchString != null)
-            {
-                pageIndex = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-
-            ViewData["CurrentFilter"] = searchString;
-
-            // x => x.Name.Contains(searchString)
-            Expression<Func<Post, bool>> filter = null;
-
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                filter = c => c.Title.Contains(searchString);
-            }
-
-            Func<IQueryable<Post>, IOrderedQueryable<Post>> orderBy = x => x.OrderByDescending(p => p.PublishedDate);
-
-            var posts = await _postServices.GetAsync(filter: filter, orderBy: orderBy, pageIndex: pageIndex ?? 1, pageSize: pageSize ?? 3);
-
+            var posts = await _postServices.GetAllAsync();
             return View(posts);
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
             return View();
         }

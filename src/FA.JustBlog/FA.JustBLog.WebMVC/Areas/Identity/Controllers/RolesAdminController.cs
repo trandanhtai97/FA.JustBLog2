@@ -1,30 +1,20 @@
-using FA.JustBlog.Models.Security;
 using FA.JustBlog.WebMVC.Areas.Identity.ViewModels;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
-using System.Collections.Generic;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Collections.Generic;
+using FA.JustBlog.Models.Security;
 
 namespace FA.JustBlog.WebMVC.Areas.Identity.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class RolesAdminController : Controller
     {
-        public RolesAdminController()
-        {
-        }
-
-        public RolesAdminController(ApplicationUserManager userManager,
-            ApplicationRoleManager roleManager)
-        {
-            UserManager = userManager;
-            RoleManager = roleManager;
-        }
 
         private ApplicationUserManager _userManager;
         public ApplicationUserManager UserManager
@@ -50,6 +40,16 @@ namespace FA.JustBlog.WebMVC.Areas.Identity.Controllers
             {
                 _roleManager = value;
             }
+        }
+
+        public RolesAdminController(ApplicationUserManager userManager, ApplicationRoleManager roleManager)
+        {
+            UserManager = userManager;
+            RoleManager = roleManager;
+        }
+
+        public RolesAdminController()
+        {
         }
 
         //

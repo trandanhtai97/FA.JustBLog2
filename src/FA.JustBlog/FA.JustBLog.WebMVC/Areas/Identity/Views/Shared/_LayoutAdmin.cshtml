@@ -4,13 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Assets/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="@Url.Action("Index", "Home", new { area = "" })">
+        <a class="navbar-brand" href="@Url.Action("Index", "Post", new { area = "" })">
             <img src="~/Assets/images/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
             Bootstrap
         </a>

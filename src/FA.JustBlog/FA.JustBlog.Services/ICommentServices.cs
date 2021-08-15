@@ -1,5 +1,4 @@
-﻿using FA.JustBlog.Data.Infrastructure;
-using FA.JustBlog.Models.Common;
+﻿using FA.JustBlog.Models.Common;
 using FA.JustBlog.Services.BaseServices;
 using System;
 using System.Collections.Generic;
@@ -9,44 +8,36 @@ namespace FA.JustBlog.Services
 {
     public interface ICommentServices : IBaseService<Comment>
     {
-        Task<int> AddCommentAsync(int postId, string commentName, string commentEmail, 
-            string commentTitle, string commentBody);
+        /// <summary>
+        /// Add a comment
+        /// </summary>
+        /// <param name="postId">Id of a Post</param>
+        /// <param name="commentName">Comment's name</param>
+        /// <param name="commentEmail">Comment's email</param>
+        /// <param name="commentHeader">Comment's header</param>
+        /// <param name="commentText">Comment's text</param>
+        /// <returns>int</returns>
+        Task<int> AddCommentAsync(int postId, string commentName, string commentEmail, string commentHeader, string commentText);
 
-        Task<IEnumerable<Comment>> GetCommentForPostAsync(Post post);
-        
-        Task<IEnumerable<Comment>> GetCommentForPostAsync(Guid postId);
-    }
+        /// <summary>
+        /// Get Comment by Post Id
+        /// </summary>
+        /// <param name="postId">Id of Post</param>
+        /// <returns>List of Comment</returns>
+        IEnumerable<Comment> GetCommentsForPost(Guid postId);
 
-    public class CommentServices : BaseServices<Comment>, ICommentServices
-    {
-        public CommentServices(IUnitOfWork unitOfWork) : base(unitOfWork)
-        {
-        }
+        /// <summary>
+        /// Get Comment by Post Id
+        /// </summary>
+        /// <param name="postId">Id of Post</param>
+        /// <returns>List of Comment</returns>
+        Task<IEnumerable<Comment>> GetCommentsForPostAsync(Guid postId);
 
-        public async Task<int> AddCommentAsync(int postId, string commentName, string commentEmail, string commentTitle, string commentBody)
-        {
-            var comment = new Comment()
-            {
-                Id = Guid.NewGuid(),
-                Name = commentName,
-                Email = commentEmail,
-                CommentHeader = commentTitle,
-                CommentText = commentBody,
-                CommentTime = DateTime.Now
-            };
-            _unitOfWork.CommentRepository.Add(comment);
-            return await _unitOfWork.SaveChangesAsync();
-        }
-
-        public Task<IEnumerable<Comment>> GetCommentForPostAsync(Post post)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Comment>> GetCommentForPostAsync(Guid postId)
-        {
-            throw new NotImplementedException();
-        }
+        /// <summary>
+        /// Get Comment by Post object
+        /// </summary>
+        /// <param name="post">a Post object</param>
+        /// <returns>Lsit of Comment</returns>
+        Task<IEnumerable<Comment>> GetCommentsForPostAsync(Post post);
     }
 }
-

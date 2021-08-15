@@ -2,7 +2,6 @@ using FA.JustBlog.Models.Security;
 using FA.JustBlog.WebMVC.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.Owin.Security;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,17 +10,9 @@ using System.Web.Mvc;
 
 namespace FA.JustBlog.WebMVC.Controllers
 {
-    [System.Web.Mvc.Authorize]
+    [Authorize]
     public class ManageController : Controller
     {
-        public ManageController()
-        {
-        }
-
-        public ManageController(ApplicationUserManager userManager)
-        {
-            UserManager = userManager;
-        }
 
         private ApplicationUserManager _userManager;
         public ApplicationUserManager UserManager
@@ -34,6 +25,15 @@ namespace FA.JustBlog.WebMVC.Controllers
             {
                 _userManager = value;
             }
+        }
+
+        public ManageController()
+        {
+        }
+
+        public ManageController(ApplicationUserManager userManager)
+        {
+            UserManager = userManager;
         }
 
         //
@@ -326,7 +326,7 @@ namespace FA.JustBlog.WebMVC.Controllers
             return View(new ManageLoginsViewModel
             {
                 CurrentLogins = userLogins,
-                OtherLogins = (System.Collections.Generic.IList<Microsoft.AspNetCore.Http.Authentication.AuthenticationDescription>)otherLogins
+                OtherLogins = otherLogins
             });
         }
 

@@ -1,4 +1,4 @@
-﻿using FA.JustBlog.Data.Infrastructure.BaseRepositories;
+﻿using FA.JustBlog.Data.Infrastructure.Repositories;
 using FA.JustBlog.Models.BaseEntities;
 using FA.JustBlog.Models.Common;
 using System;
@@ -8,23 +8,20 @@ namespace FA.JustBlog.Data.Infrastructure
 {
     public interface IUnitOfWork : IDisposable
     {
-        JustBlogDbContext DataContext { get; }
-
-        #region Master Data
-
-        IGenericRepository<Category> CategoryRepository { get; }
-
-        IGenericRepository<Tag> TagRepository { get; }
-
-        IGenericRepository<Post> PostRepository { get; }
-        IGenericRepository<Comment> CommentRepository { get; }
-
-        #endregion
+        JustBlogContext DataContext { get; }
 
         int SaveChanges();
 
         Task<int> SaveChangesAsync();
 
         IGenericRepository<T> GenericRepository<T>() where T : BaseEntity;
+
+        IGenericRepository<Category> CategoryRepository { get; }
+
+        IGenericRepository<Post> PostRepository { get; }
+
+        IGenericRepository<Tag> TagRepository { get; }
+
+        IGenericRepository<Comment> CommentRepository { get; }
     }
 }

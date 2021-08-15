@@ -58,15 +58,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\BaseRepositories\GenericRepository.cs" />
-    <Compile Include="Infrastructure\BaseRepositories\IGenericRepository.cs" />
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\Repositories\GenericRepository.cs" />
+    <Compile Include="Infrastructure\Repositories\IGenericRepository.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="JustBlogDbContext.cs" />
-    <Compile Include="DbInitializer.cs" />
-    <Compile Include="Migrations\202108100843385_ver1.cs" />
-    <Compile Include="Migrations\202108100843385_ver1.designer.cs">
-      <DependentUpon>202108100843385_ver1.cs</DependentUpon>
+    <Compile Include="JustBlogContext.cs" />
+    <Compile Include="JustBlogInitializer.cs" />
+    <Compile Include="Migrations\202108090643380_InitialCreate.cs" />
+    <Compile Include="Migrations\202108090643380_InitialCreate.designer.cs">
+      <DependentUpon>202108090643380_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108090650066_UpdatePost.cs" />
+    <Compile Include="Migrations\202108090650066_UpdatePost.designer.cs">
+      <DependentUpon>202108090650066_UpdatePost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108090654304_AddCommentObject.cs" />
+    <Compile Include="Migrations\202108090654304_AddCommentObject.designer.cs">
+      <DependentUpon>202108090654304_AddCommentObject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108091455238_UpdateDateTime.cs" />
+    <Compile Include="Migrations\202108091455238_UpdateDateTime.designer.cs">
+      <DependentUpon>202108091455238_UpdateDateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108091601278_AddUser.cs" />
+    <Compile Include="Migrations\202108091601278_AddUser.designer.cs">
+      <DependentUpon>202108091601278_AddUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108110353018_ChangeSchema.cs" />
+    <Compile Include="Migrations\202108110353018_ChangeSchema.designer.cs">
+      <DependentUpon>202108110353018_ChangeSchema.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,14 +96,33 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FA.JustBlog.Common\FA.JustBlog.Common.csproj">
+      <Project>{3b6300c4-c8f9-41b6-a2c8-cbe93901d78d}</Project>
+      <Name>FA.JustBlog.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FA.JustBlog.Models\FA.JustBlog.Models.csproj">
-      <Project>{44AB3327-D7F5-4F93-B32D-CFA2AA0BCFE1}</Project>
+      <Project>{35d610cd-16cd-4523-8c04-0207ef341dc2}</Project>
       <Name>FA.JustBlog.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202108100843385_ver1.resx">
-      <DependentUpon>202108100843385_ver1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202108090643380_InitialCreate.resx">
+      <DependentUpon>202108090643380_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108090650066_UpdatePost.resx">
+      <DependentUpon>202108090650066_UpdatePost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108090654304_AddCommentObject.resx">
+      <DependentUpon>202108090654304_AddCommentObject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108091455238_UpdateDateTime.resx">
+      <DependentUpon>202108091455238_UpdateDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108091601278_AddUser.resx">
+      <DependentUpon>202108091601278_AddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108110353018_ChangeSchema.resx">
+      <DependentUpon>202108110353018_ChangeSchema.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

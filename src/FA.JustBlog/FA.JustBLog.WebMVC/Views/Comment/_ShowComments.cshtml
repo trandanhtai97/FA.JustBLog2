@@ -1,0 +1,19 @@
+﻿<h4 class="mb-4">Comment</h4>
+
+@foreach (var item in Model)
+{
+    <div class="card card-white post mb-3">
+        <div class="post-heading">
+            <div class="float-left meta">
+                <div class="title h5">
+                    <a href="#"><b>@item.Name</b></a>
+                </div>
+                <h6 class="text-muted time"><time class="timeago" datetime="@item.CommentTime"></time></h6>
+            </div>
+        </div>
+        <div class="post-description">
+            <b>@item.CommentHeader</b>
+            <p>@item.CommentText</p>
+        </div>
+    </div>
+}
